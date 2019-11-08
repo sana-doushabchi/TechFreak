@@ -81,3 +81,16 @@ def panel(request):
     if request.user.is_authenticated:
             is_authenticated = True
     return render(request, "panel.html" ,{'is_authenticated':is_authenticated})
+
+
+
+def setting(request):
+    if request.method == 'POST':
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        user = User(first_name=first_name, last_name=last_name)
+        user.save()
+        if request.user.is_authenticated:
+            is_authenticated = True
+        return render(request, "profile.html", {'firstname':first_name, 'lastname':last_name, 'is_authenticated':is_authenticated})
+    return render(request, "setting.html")

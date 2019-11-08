@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <form id=”make_new_course" method="post" action="/choose/">
+        {% csrf_token %}
+        <div class="ui form">
+  <div class="fields">
+    <div class="field">
+      <label>دانشکده</label>
+      <input name="department" type="text" placeholder="department" required>
+    </div>
+    <br>
+    <div class="field">
+      <label>نام</label>
+      <input name="name" type="text" placeholder="name" required>
+    </div>
+    <div class="field">
+      <label>User name</label>
+      <input name="username" type="text" placeholder="User Name" required>
+    </div>
+
+    <div class="field">
+      <label>E-mail</label>
+      <input name="email" type="email" placeholder="joe@schmoe.com" required>
+    </div>
+
+      <div class="field">
+      <label>Password</label>
+      <input name="password1" type="password" placeholder="password" required>
+    </div>
+
+      <div class="field">
+      <label>Confirm Password</label>
+      <input name="password2" type="password" placeholder="confirm password"  required>
+    </div>
+      <button name="submit" type="submit" class="ui button">
+            submit
+      </button>
+  </div>
+</div>
+    </form>
+{% endblock %}
