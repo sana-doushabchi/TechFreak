@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render , redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 def home(request):
@@ -58,6 +58,11 @@ def contactus(request):
         if not len(str(text)) < 10 or len(str(text)) > 250 :
             return render(request, "contactdone.html")
     return render(request, "contactus.html")
+
+
+def log_out(request):
+    logout(request)
+    return render(request, "index.html")
 
 
 
