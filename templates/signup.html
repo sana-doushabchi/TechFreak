@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    {% if error_pass %}
+        <div id="errors">
+                گذرواژه و تکرار گذرواژه یکسان نیستند
+        </div>
+        {% elif error_user %}
+        <div id="errors">
+            نام کاربری شما در سیستم موجود است
+        </div>
+    {% endif %}
+    <br>
+    <hr>
+    <form id="register_form" method="post" action="/signup/">
+        {% csrf_token %}
+        <div class="ui form">
+  <div class="fields">
+    <div class="field">
+      <label>First name</label>
+      <input name="first_name" type="text" placeholder="First Name" required>
+    </div>
+
+    <div class="field">
+      <label>Last name</label>
+      <input name="last_name" type="text" placeholder="Last Name" required>
+    </div>
+    <div class="field">
+      <label>User name</label>
+      <input name="username" type="text" placeholder="User Name" required>
+    </div>
+
+    <div class="field">
+      <label>E-mail</label>
+      <input name="email" type="email" placeholder="joe@schmoe.com" required>
+    </div>
+
+      <div class="field">
+      <label>Password</label>
+      <input name="password1" type="password" placeholder="password" required>
+    </div>
+
+      <div class="field">
+      <label>Confirm Password</label>
+      <input name="password2" type="password" placeholder="confirm password"  required>
+    </div>
+      <button name="submit" type="submit" class="ui button">
+            submit
+      </button>
+  </div>
+</div>
+    </form>
+{% endblock %}
