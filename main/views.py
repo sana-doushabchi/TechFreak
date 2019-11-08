@@ -75,3 +75,9 @@ def profile(request):
     if request.user.is_authenticated:
             is_authenticated = True
     return render(request, "profile.html", {'firstname':first_name, 'lastname':last_name, 'username':username, 'is_authenticated':is_authenticated})
+
+def panel(request):
+    is_authenticated = False
+    if request.user.is_authenticated:
+            is_authenticated = True
+    return render(request, "panel.html" ,{'is_authenticated':is_authenticated})

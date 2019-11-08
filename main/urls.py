@@ -9,5 +9,5 @@ urlpatterns = [
     path('contactus/', views.contactus, name='contactus'),
     path('logout/', views.log_out , name='log-out'),
     path('profile/', views.profile, name='profile'),
-
+    path('panel', views.panel, name='panel'),
 ]
