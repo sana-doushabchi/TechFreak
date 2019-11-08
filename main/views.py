@@ -68,9 +68,9 @@ def log_out(request):
     return redirect('/')
 
 def profile(request):
-    first_name = request.POST.get("first_name")
-    last_name = request.POST.get("last_name")
-    username = request.POST.get("username")
+    first_name = request.user.first_name
+    last_name = request.user.last_name
+    username = request.user.username
     is_authenticated = False
     if request.user.is_authenticated:
             is_authenticated = True
