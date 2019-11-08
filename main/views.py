@@ -45,3 +45,15 @@ def login(request):
             return render(request, 'login.html', {"error": True})
     return render(request,'login.html')
 
+
+def contactus(request):
+    if request.method == 'POST':
+        title = request.POST.get("title")
+        email = request.POST.get("email")
+        text = request.POST.get("text")
+        if not len(str(text)) < 10 or len(str(text)) > 250 :
+            return render(request, "contactdone.html")
+        return render(request, "contactus.html")
+
+
+

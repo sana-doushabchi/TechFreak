@@ -10,18 +10,20 @@
 <body>
 
     {% if is_authenticated %}
-        <div id="navbar" class="ui four item menu" style="background-color:#5F5CCE">
-            <a id="homepage" class="item" href="/">صفحه اصلی</a>
+        <div id="navbar" class="ui five item menu" style="background-color:#5F5CCE">
+            <a id="homepage" class="item active" href="/">صفحه اصلی</a>
             <a id="profile" class="item" >نمایه کاربر</a>
-            <a id="logout" class="item active" >خروج</a>
+            <a id="logout" class="item " >خروج</a>
             <a id="panel" class="item" >پنل کاربر</a>
+            <a id="contact" class="item" href="/contactus">تماس با ما</a>
         </div>
 
     {% elif not is_authenticated %}
-        <div id="navbar" class="ui three item menu" style="background-color:#5F5CCE">
-        <a id="homepage" class="item" href="/">صفحه اصلی</a>
-        <a id="login" class="item active" href="/login/">ورود</a>
+        <div id="navbar" class="ui four item menu" style="background-color:#5F5CCE">
+        <a id="homepage" class="item active" href="/">صفحه اصلی</a>
+        <a id="login" class="item" href="/login/">ورود</a>
         <a id="register" class="item" href="/signup/">ثبت نام</a>
+        <a id="contact" class="item" href="/contactus">تماس با ما</a>
     </div>
     {% endif %}
     <div id="content">

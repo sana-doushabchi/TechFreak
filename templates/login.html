@@ -12,24 +12,23 @@
     {% endif %}
     <br>
     <hr>
-   <form class="ui inverted segment" id="login_form" method="post" action="{% url 'log-in' %}">
-        {% csrf_token %}
-  <div class="ui inverted form">
-    <div class="two fields">
-      <div class="field">
-        <label>Username</label>
-        <input name="username" placeholder="Username" name="username" type="text" required>
+    <div class="ui middle aligned center aligned grid">
+       <form class="ui large form" id="login_form" method="post" action="{% url 'log-in' %}">
+            {% csrf_token %}
+      <div class="ui stacked segment">
+           <div class="field">
+            <label>Username</label>
+            <input name="username" placeholder="Username" name="username" type="text" required>
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input name="password" placeholder="Password" name="password" type="password" required>
+        </div>
+        <button name="login" type="submit" class="ui button">
+                login
+          </button>
       </div>
-      <div class="field">
-        <label>Password</label>
-        <input name="password" placeholder="Password" name="password" type="password" required>
-      </div>
-    </div>
-    <button name="login" type="submit" class="ui button">
-            login
-      </button>
-  </div>
-</form>
-
+    </form>
+</div>
 
 {% endblock %}

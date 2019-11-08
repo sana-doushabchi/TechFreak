@@ -1,0 +1,33 @@
+
+    {% extends "base.html" %}
+
+{% block title %}تماس با ما{% endblock %}
+
+{% block content %}
+<link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <div class="contact-background-image" style=" padding: 50px 0 50px 0; direction: rtl">
+		<div class="ui container margin-top-30">
+			<form class="ui form pad-top-30 pad-bottom-30" id="contact_us_form" action="{% url 'contactus' %}" method="post">
+            {% csrf_token %}
+			<h3 class="huge header inverted ">تماس با ما</h3>
+				<div class="two fields">
+					<div class="field">
+						<label>عنوان</label>
+						<input type="text" name="title" placeholder="عنوان را وارد کنید">
+					</div>
+					<div class="field">
+						<label>ایمیل</label>
+						<input type="text" name="email" placeholder="email@example.com">
+					</div>
+				</div>
+				<div class="field">
+					<label>متن</label>
+					<textarea name="text"></textarea>
+				</div>
+			  <div class="ui submit button">ارسال</div>
+			</form>
+		</div>
+{% endblock %}
