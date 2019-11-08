@@ -22,11 +22,11 @@ def signup(request):
         password2 = request.POST.get("password2")
         if password1 != password2 :
             error_pass = True
-            return render(request, "signup.html", {"error_pass": error_pass})
         if User.objects.filter(username=username).exists():
             error_user = True
-            return render(request, "signup.html" , {"error_user": error_user})
-        user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email)
+        if error_user or error_pass:
+            return render(request, "signup.html", {"error_user": error_user, "error_pass": error_pass})
+        user = User(first_name=first_name, last_name=last_name, username=username, email=email)
         user.set_password(password1)
         user.save()
         return render(request, "index.html")
@@ -39,7 +39,11 @@ def log_in(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
         if User.objects.filter(username=username).exists():
-            user = authenticate(request, username=username, password1=password)
+            user = authenticate(request, username=username, password=password)
+            if user:
+                login(request, user)
+            else:
+                return render(request, 'login.html', {"error": True})
             return redirect('/')
         else:
             return render(request, 'login.html', {"error": True})
