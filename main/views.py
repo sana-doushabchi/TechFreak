@@ -71,4 +71,7 @@ def profile(request):
     first_name = request.POST.get("first_name")
     last_name = request.POST.get("last_name")
     username = request.POST.get("username")
-    return render(request, "profile.html", {'firstname':first_name, 'lastname':last_name, 'username':username})
+    is_authenticated = False
+    if request.user.is_authenticated:
+            is_authenticated = True
+    return render(request, "profile.html", {'firstname':first_name, 'lastname':last_name, 'username':username, 'is_authenticated':is_authenticated})
