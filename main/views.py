@@ -57,12 +57,18 @@ def contactus(request):
         text = request.POST.get("text")
         if not len(str(text)) < 10 or len(str(text)) > 250 :
             return render(request, "contactdone.html")
-    return render(request, "contactus.html")
+    is_authenticated = False
+    if request.user.is_authenticated:
+            is_authenticated = True
+    return render(request, "contactus.html", {'is_authenticated':is_authenticated})
 
 
 def log_out(request):
     logout(request)
     return render(request, "index.html")
 
-
-
+def profile(request):
+    first_name = request.POST.get("first_name")
+    last_name = request.POST.get("last_name")
+    username = request.POST.get("username")
+    return render(request)
