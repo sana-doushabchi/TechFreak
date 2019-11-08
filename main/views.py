@@ -1,9 +1,11 @@
 from django.contrib.auth.models import User
-from django.shortcuts import render
-
+from django.shortcuts import render , redirect
+from django.contrib.auth import authenticate
 
 def home(request):
-    return render(request, "index.html")
+    if request.user.is_authenticated:
+        is_authenticated = True
+    return render(request, "index.html" ,{'is_authenticated':is_authenticated})
 
 
 def signup(request):
@@ -27,3 +29,18 @@ def signup(request):
         user.save()
         return render(request, "index.html")
     return render(request, "signup.html")
+
+
+def login(request):
+    if request.method == 'POST':
+        error = False
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        if User.objects.filter(username=username).exists():
+            user = authenticate(request, username=username, password1=password)
+            login(request)
+            return redirect('/')
+        else:
+            return render(request, 'login.html', {"error": True})
+    return render(request,'login.html')
+
