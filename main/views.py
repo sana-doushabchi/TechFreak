@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render , redirect
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
+
 
 def home(request):
     is_authenticated = False
@@ -32,14 +33,13 @@ def signup(request):
     return render(request, "signup.html")
 
 
-def login(request):
+def log_in(request):
     if request.method == 'POST':
         error = False
         username = request.POST.get("username")
         password = request.POST.get("password")
         if User.objects.filter(username=username).exists():
             user = authenticate(request, username=username, password1=password)
-            login(request)
             return redirect('/')
         else:
             return render(request, 'login.html', {"error": True})
@@ -53,7 +53,7 @@ def contactus(request):
         text = request.POST.get("text")
         if not len(str(text)) < 10 or len(str(text)) > 250 :
             return render(request, "contactdone.html")
-        return render(request, "contactus.html")
+    return render(request, "contactus.html")
 
 
 
