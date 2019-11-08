@@ -65,10 +65,10 @@ def contactus(request):
 
 def log_out(request):
     logout(request)
-    return render(request, "index.html")
+    return redirect('/')
 
 def profile(request):
     first_name = request.POST.get("first_name")
     last_name = request.POST.get("last_name")
     username = request.POST.get("username")
-    return render(request)
+    return render(request, "profile.html", {'firstname':first_name, 'lastname':last_name, 'username':username})
